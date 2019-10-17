@@ -1,0 +1,18 @@
+.stat-card{
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  .stat-value{
+    padding: 2rem 1rem;
+    text-align: center;
+    font-weight: 900;
+    font-size: 2rem;
+  }
+  .stat-label{
+    border-top: 1px solid #f5c6cb;
+    padding: 1rem;
+    font-size: .9rem;
+    font-weight: 900;
+  }
+}

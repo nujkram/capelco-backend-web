@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+    <div class="container mb-5 pb-5 mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="d-flex">
+                    <img src="{% static 'img/capelco_logo.png' %}" class="mx-auto img-fluid">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <form method="post" action="{% url 'account_login_view' %}">
+                            {% csrf_token %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} mb-2">{{ message|safe }}</div>
+                                {% endfor %}
+                            {% endif %}
+                            <h5 class="mb-4">Sign in</h5>
+                            <div class="form-group">
+                                <label for="id_email">Email</label>
+                                <input id="id_email" class="form-control" name="email" type="text"
+                                       placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_password">Password</label>
+                                <input id="id_password" class="form-control" name="password" type="password"
+                                       placeholder="Password"
+                                       required>
+                            </div>
+                            <button class="btn btn-block btn-main" type="submit">Sign in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
