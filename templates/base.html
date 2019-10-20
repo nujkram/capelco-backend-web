@@ -21,13 +21,6 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=609189322771922&autoLogAppEvents=1"></script>
-<div class="container">
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} mb-2">{{ message|safe }}</div>
-    {% endfor %}
-  {% endif %}
-</div>
 
 {% block content %}
 {% endblock %}

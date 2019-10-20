@@ -71,9 +71,9 @@ class Account(AbstractBaseUser):
     def base_profile(self):
         BaseProfile = apps.get_model('profiles.BaseProfile')
         try:
-            return BaseProfile.objects.get(user=self)
+            return BaseProfile.objects.get(account=self)
         except BaseProfile.DoesNotExist:
-            profile = BaseProfile.objects.create(user=self)
+            profile = BaseProfile.objects.create(account=self)
             return profile
 
 

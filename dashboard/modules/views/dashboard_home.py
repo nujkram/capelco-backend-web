@@ -11,12 +11,10 @@ def correct_user_check(user):
 
 class DashboardHomeView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request):
-        accounts = Account.objects.all()
 
         context = {
             'page_title': 'Dashboard Home',
             'location': 'home',
-            'accounts': accounts,
         }
 
         return render(request, 'dashboard/home.html', context)

@@ -1,38 +1,41 @@
 {% load static %}
 <nav id="sidebar">
-  <div class="sidebar-header">
-    <a href="{% url 'dashboard_home_view' %}">
-        <h5 class="text-dark">ADMIN DASHBOARD</h5>
-    </a>
-  </div>
-
-  <ul class="list-unstyled components">
-    <p>Dashboard</p>
-    <li class="{% if location == 'home' %}active{% endif %}">
-      <a href="#">Home</a>
-    </li>
-    <li class="{% if location == 'members' %}active{% endif %}">
-        <a href="#">
-            Members
+    <div class="sidebar-header">
+        <a href="{% url 'dashboard_home_view' %}">
+            <h5 class="text-dark">ADMIN DASHBOARD</h5>
         </a>
-    </li>
-    <li>
-      <a href="#scorecardSubmenu" data-toggle="collapse" aria-expanded="false"
-         class="dropdown-toggle {% if location == 'data' %}active{% endif %}">Data</a>
-      <ul class="collapse list-unstyled" id="scorecardSubmenu">
-        <li class="{% if location == 'turn_on_data' %}active{% endif %}">
-          <a href="#">Turn on Data</a>
-        </li>
-        <li class="{% if location == 'master_data' %}active{% endif %}">
-          <a href="#">Master</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
+    </div>
 
-  <ul class="list-unstyled CTAs">
-    <li>
-      <a href="#" class="download">Quick Download</a>
-    </li>
-  </ul>
+    <ul class="list-unstyled components">
+        <p>Dashboard</p>
+        <li class="{% if location == 'home' %}active{% endif %}">
+            <a href="{% url 'dashboard_home_view' %}">Home</a>
+        </li>
+        <li class="{% if location == 'members' %}active{% endif %}">
+            <a href="#">
+                Members
+            </a>
+        </li>
+        <li>
+            <a href="#scorecardSubmenu" data-toggle="collapse" aria-expanded="false"
+               class="dropdown-toggle {% if location == 'data' %}active{% endif %}">Data</a>
+            <ul class="collapse list-unstyled" id="scorecardSubmenu">
+                <li class="{% if location == 'turn_on_data' %}active{% endif %}">
+                    <a href="#">Turn on Data</a>
+                </li>
+                <li class="{% if location == 'master_data' %}active{% endif %}">
+                    <a href="#">Master</a>
+                </li>
+            </ul>
+        </li>
+        <li class="{% if location == 'users' %}active{% endif %}">
+            <a href="{% url 'dashboard_user_view' %}">Users</a>
+        </li>
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="#" class="download">Quick Download</a>
+        </li>
+    </ul>
 </nav>
