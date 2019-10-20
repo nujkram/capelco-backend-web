@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+    <table class="table table-responsive-md">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <th>User Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account.email }}</td>
+                <td>{{ account.username }}</td>
+                <td>{{ account.user_type }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
