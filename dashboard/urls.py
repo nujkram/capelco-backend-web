@@ -7,6 +7,10 @@ urlpatterns = [
     # Dashboard
     path('', home_view.DashboardHomeView.as_view(), name='dashboard_home_view'),
 
+    # Add
+    path('', home_view.DashboardHomeView.as_view(), name='dashboard_home_view'),
+
     # Users
     path('users/', user_view.DashboardUserView.as_view(), name='dashboard_user_view'),
+
 ]

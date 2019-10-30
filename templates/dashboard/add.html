@@ -1,0 +1,83 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Add Member</h1>
+        <form name="form" method="post" action="">
+            <input type="hidden" name="new" value="1" />
+
+            <p>Turn on number:<input type="text" name="turnonnum" placeholder="##-XXX-####" />
+
+            <input type="checkbox" name="maslist" value="1" />Add to Masterlist</p>
+
+            <p>Consumer Name:<input type="text" name="name" placeholder="Last Name, First Name" required /></p>
+
+            <p>Spouse Name:<input type="text" name="spouse" placeholder="Last Name, First Name" /></p>
+
+            <p>Address:<input type="text" name="address" placeholder="Address" required /></p>
+
+            <p>Date of Birth: <input type="date" name="bday"></p>
+
+            <p>Cons Type:
+                <select name="constype">
+                    <option value="Permanent">Permanent</option>
+                    <option value="Temporary">Temporary</option>
+	            </select>
+
+            Type of Installation:
+                <select name="instype">
+                    <option value="NEW">NEW</option>
+                    <option value="ADDL">OLD: ADDITIONAL</option>
+                </select>
+            </p>
+
+            <p>Type of Connection:
+	            <select name="typecon">
+                    <option value="">Select...</option>
+                    <option value="RES">RESIDENTIAL</option>
+                    <option value="COMM">COMMERCIAL</option>
+                    <option value="IND">INDUSTRIALL</option>
+                    <option value="PUB">PUBLIC</option>
+                </select>
+            </p>
+
+            <p>Area Office:
+	            <select name="area">
+                    <option value="">Select...</option>
+                    <option value="PAO">PAO</option>
+                    <option value="RCAO">RCAO</option>
+                    <option value="MAO">MAO</option>
+                    <option value="DAO">DAO</option>
+                    <option value="PRAO">PRAO</option>
+                    <option value="DUMAO">DUMAO</option>
+	            </select>
+            </p>
+
+            <p>
+                <input type="radio" class="" name="memtype" value="1" checked="checked" />Single
+                <input type="radio" class="" name="memtype"  value="2" />Joint
+                <input type="radio" class="" name="memtype"  value="3" />Juridical
+            </p>
+
+            <p>
+                <input type="radio" class="" name="jurtype" value="0" checked="checked" />None
+                <input type="radio" class="" name="jurtype" value="1"  />Association
+                <input type="radio" class="" name="jurtype"  value="2" />Corporation
+                <input type="radio" class="" name="jurtype"  value="3" />Firm
+                <input type="radio" class="" name="jurtype"  value="4" />Political
+            </p>
+
+            <p><input name="submit" type="submit" value="Submit" /></p>
+        </form>
+</div>
+
+{% block scripts %}
+{% endblock %}
