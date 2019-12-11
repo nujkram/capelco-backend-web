@@ -9,7 +9,6 @@ from locations import models
 from locations import serializers
 from locations.models import Region, Province, City, Country
 from locations.serializers import ProvinceSerializer, CitySerializer, RegionSerializer, CityCoordinateSerializer
-from profiles.models import ProfileAddress
 
 
 class LargeResultsSetPagination(PageNumberPagination):
@@ -147,10 +146,5 @@ class ApiCityCoordinate(APIView):
     :param kwargs:
     :return:
     """
-    address = ProfileAddress.objects.filter(profile__user__is_verified=True)
-    address = address.exclude(city__isnull=True)
-    coordinates = [c.city.get_coords() for c in address]
+    pass
 
-    serializer = CityCoordinateSerializer(coordinates, many=True)
-
-    return Response(serializer.data, status=status.HTTP_200_OK)

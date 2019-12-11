@@ -36,7 +36,7 @@ class TurnOn(models.Model):
     amount = models.DecimalField(max_digits=24, decimal_places=2, blank=True, null=True)
     or_number = models.CharField(max_length=64, blank=True, null=True)
     distance = models.IntegerField(blank=False, null=False)
-    feeder = models.IntegerField(blank=False, null=False)
+    feeder = models.CharField(max_length=12, blank=False, null=False)
     year = models.IntegerField(blank=False, null=False)
 
     area = models.ForeignKey('locations.Province', related_name='province_area', null=True, on_delete=models.SET_NULL)

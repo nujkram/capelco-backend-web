@@ -1,0 +1,46 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="{% url 'dashboard_home_view' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'turn_on_list' %}">Turn On List</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {{ page_title }}
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-baseline">
+                <div class="card-title">{{ page_title }}</div>
+                <div>
+                    <a class="btn btn-warning text-white" href="{% url 'turn_on_update' obj.pk %}">UPDATE</a>
+                    <a class="btn btn-danger text-white" href="{% url 'turn_on_delete' obj.pk %}">DELETE</a>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="card-title">Name: <span class="card-text">{{ obj.full_name }}</span></div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

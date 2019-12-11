@@ -61,6 +61,7 @@ class MembershipCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
                 'location': 'membership',
                 'form': form,
             }
+
             messages.error(request, form.errors, extra_tags='danger')
             return render(request, 'dashboard/membership/form.html', context)
 

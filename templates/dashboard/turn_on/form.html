@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="{% url 'dashboard_home_view' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="{% url 'turn_on_list' %}">Turn On List</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {{ page_title }}
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(window).on('load', function (e) {
+            var province_id = 22;
+            var province_url = "{% url 'cities_by_province' %}?id=" + province_id;
+
+            $.get(province_url, function (data, status) {
+                var opts = '';
+
+                $.each(data, function (i, item) {
+                    opts = opts + "<option value='" + item.pk + "'>" + item.name + "</option>";
+                });
+
+                $('#id_area').empty().append(opts);
+                $('#id_municipality').empty().append(opts);
+            });
+        });
+    </script>
+{% endblock %}

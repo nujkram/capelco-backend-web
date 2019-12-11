@@ -2,7 +2,8 @@ from django import forms
 from django.contrib import admin
 
 from .models import Region, Province, City, ProvinceCoordinate, CityCoordinate, \
-    RegionCoordinate, Country
+    RegionCoordinate, Country, Barangay
+
 
 class CountryAdmin(admin.ModelAdmin):
     list_display = ['name', 'iso3']
@@ -62,6 +63,17 @@ class CityAdmin(admin.ModelAdmin):
 
 admin.site.register(City, CityAdmin)
 
+class BarangayAdminForm(forms.ModelForm):
+    class Meta:
+        model = Barangay
+        fields = '__all__'
+
+class BarangayAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug', 'city']
+    readonly_fields = ['created', 'last_updated']
+    search_fields = ['name']
+
+admin.site.register(Barangay, BarangayAdmin)
 
 class RegionCoordinateAdmin(admin.ModelAdmin):
     list_display = ['region', 'lat', 'lon', 'is_approved']

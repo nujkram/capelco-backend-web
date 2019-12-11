@@ -2,20 +2,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Pilantropo">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <link rel="shortcut icon" href="https://pilantropo.com/favicon.ico">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  {% block head_css %}
-  {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Capelco">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/all.css' %}">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/mCustomScrollbar.css' %}">
 
-  {% block head_js %}
-  {% endblock %}
-  <title>{{ page_title }}</title>
+    <!-- Font Awesome JS -->
+    <script defer src="{% static 'js/fontawesome/fontawesome-solid.js' %}"></script>
+    <script defer src="{% static 'js/fontawesome/fontawesome.js' %}"></script>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datatables.css' %}"/>
+    {% block head_css %}
+    {% endblock %}
+
+    {% block head_js %}
+    {% endblock %}
+    <title>{{ page_title }}</title>
 </head>
 <body>
 <div id="fb-root"></div>
@@ -25,8 +32,39 @@
 {% block content %}
 {% endblock %}
 {% include 'components/footer.html' %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<!-- Popper.JS -->
+<script src="{% static 'js/popper.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="{% static 'js/mCustomScrollbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/datatables.js' %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+
+        $('.datatable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy',
+                'excel',
+                'print',
+            ],
+            "pageLength": 50,
+            filter: false,
+        });
+    });
+</script>
 {% block scripts %}
 {% endblock %}
 </body>

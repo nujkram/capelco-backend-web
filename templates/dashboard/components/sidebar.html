@@ -15,8 +15,8 @@
             <a href="#scorecardSubmenu" data-toggle="collapse" aria-expanded="false"
                class="dropdown-toggle {% if location == 'data' %}active{% endif %}">Data</a>
             <ul class="collapse list-unstyled" id="scorecardSubmenu">
-                <li class="{% if location == 'turn_on_data' %}active{% endif %}">
-                    <a href="#">Turn on Data</a>
+                <li class="{% if location == 'turn_on' %}active{% endif %}">
+                    <a href="{% url 'turn_on_list' %}">Turn on Data</a>
                 </li>
                 <li class="{% if location == 'master_data' %}active{% endif %}">
                     <a href="#">Master</a>

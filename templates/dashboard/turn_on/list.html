@@ -1,0 +1,51 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="{% url 'dashboard_home_view' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {{ page_title }}
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-baseline">
+            <div class="card-title">Turn On List</div>
+            <a class="btn btn-primary" href="{% url 'turn_on_create' %}">CREATE</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Created By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in turn_on %}
+                        <tr>
+                            <td><a class="text-primary" href="{% url 'turn_on_detail' membership.pk %}">{{ obj.full_name }}</a></td>
+                            <td>{{ obj.created_by }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
