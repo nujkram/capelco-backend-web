@@ -1,10 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load humanize %}
 
-</body>
-</html>
+{% block head_css %}
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="{% url 'dashboard_home_view' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'membership_list' %}">Membership List</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    {{ page_title }}
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">{{ page_title }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-danger">
+                This is a destructive operation and cannot be undone. Are you sure you want to delete {{ obj }}
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Yes I am</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
