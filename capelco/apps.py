@@ -17,10 +17,12 @@ INSTALLED_APPS += [
 
 INSTALLED_APPS += [
     'django_extensions',
+    'crispy_forms',
     'accounts',
     'profiles',
     'locations',
     'datesdim',
+    'turn_on',
 ]
 
 # Utilities

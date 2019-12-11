@@ -11,11 +11,6 @@
         <li class="{% if location == 'home' %}active{% endif %}">
             <a href="{% url 'dashboard_home_view' %}">Home</a>
         </li>
-        <li class="{% if location == 'members' %}active{% endif %}">
-            <a href="#">
-                Members
-            </a>
-        </li>
         <li>
             <a href="#scorecardSubmenu" data-toggle="collapse" aria-expanded="false"
                class="dropdown-toggle {% if location == 'data' %}active{% endif %}">Data</a>
@@ -31,11 +26,11 @@
         <li class="{% if location == 'users' %}active{% endif %}">
             <a href="{% url 'dashboard_user_view' %}">Users</a>
         </li>
-    </ul>
 
-    <ul class="list-unstyled CTAs">
-        <li>
-            <a href="#" class="download">Quick Download</a>
+        <li class="{% if location == 'membership' %}active{% endif %}">
+            <a href="{% url 'membership_list' %}">
+                Memberships
+            </a>
         </li>
     </ul>
 </nav>

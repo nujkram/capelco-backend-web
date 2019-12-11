@@ -20,6 +20,7 @@ from accounts.views import AccountLoginView
 urlpatterns = [
     path('xhDmaaly/', admin.site.urls),
     path('', AccountLoginView.as_view(), name='home_login_view'),
-    path('dashboard/', include('dashboard.urls')),
     path('account/', include('accounts.urls')),
+    path('dashboard/', include('turn_on.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]

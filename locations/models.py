@@ -92,6 +92,24 @@ class City(models.Model):
             return False
 
 
+class Barangay(models.Model):
+    # Fields
+    name = models.CharField(max_length=255)
+    slug = extension_fields.AutoSlugField(populate_from="name", blank=True)
+    created = models.DateTimeField(
+        blank=True, null=True, auto_now_add=True, editable=False
+    )
+    last_updated = models.DateTimeField(
+        blank=True, null=True, auto_now=True, editable=False
+    )
+
+    # Relationship Fields
+    city = models.ForeignKey(City, related_name="brgy_city", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}, {}".format(self.name, self.city)
+
+
 class RegionCoordinate(models.Model):
     # Fields
     created = models.DateTimeField(blank=True, null=True, auto_now_add=True, editable=False)
@@ -151,3 +169,31 @@ class CityCoordinate(models.Model):
 
     def __str__(self):
         return u'%s' % self.city.name
+
+
+class BarangayCoordinate(models.Model):
+    # Fields
+    created = models.DateTimeField(
+        blank=True, null=True, auto_now_add=True, editable=False
+    )
+    last_updated = models.DateTimeField(
+        blank=True, null=True, auto_now=True, editable=False
+    )
+    lat = models.DecimalField(max_digits=15, decimal_places=12, blank=True)
+    lon = models.DecimalField(max_digits=15, decimal_places=12, blank=True)
+    is_approved = models.BooleanField(default=False)
+
+    # Relationship Fields
+    barangay = models.ForeignKey(
+        Barangay, related_name="brgycoords", on_delete=models.CASCADE
+    )
+
+    class Meta:
+        ordering = ("barangay",)
+        db_table = "brgy_coordinates"
+
+    def __str__(self):
+        return "{}".format(self.barangay)
+
+    def coords(self):
+        return {"lat": self.lat, "lon": self.lon}
