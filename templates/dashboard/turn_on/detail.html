@@ -35,10 +35,65 @@
 
             </div>
             <div class="card-body">
-                <div class="card-title">Name: <span class="card-text">{{ obj.full_name }}</span></div>
-
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-header">Applicant</div>
+                        <div class="card-body">
+                            <div class="card-text">Application number: <strong>{{ obj.number }}</strong></div>
+                            <div class="card-text">Name: <strong>{{ obj.get_full_name }}</strong></div>
+                            <div class="card-text">Membership type: <strong>{{ obj.membership }}</strong></div>
+                            <div class="card-text">Spouse: <strong>{{ obj.spouse }}</strong></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Connection Detail</div>
+                        <div class="card-body">
+                            <div class="card-text">Installation type: <strong>{{ obj.install }}</strong></div>
+                            <div class="card-text">Connection type: <strong>{{ obj.connection }}</strong></div>
+                            <div class="card-text">Cons: <strong>{{ obj.cons }}</strong></div>
+                            <div class="card-text">Amount: <strong>{{ obj.amount }}</strong></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Status</div>
+                        <div class="card-body">
+                            <div class="card-text">Status:
+                                {% if obj.is_approved %}
+                                    <strong class="text-success">APPROVED</strong>
+                                {% else %}
+                                    <strong class="text-warning">PENDING</strong>
+                                {% endif %}
+                            </div>
+                            <div class="card-text">Year applied: <strong>{{ obj.year }}</strong></div>
+                            <div class="card-text">Date created: <strong>{{ obj.created|date }}</strong></div>
+                            <div class="card-text">Date last updated: <strong>{{ obj.updated|date }}</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Address ({{ obj.area }})
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card-text">Address: <strong>{{ obj.address }}</strong></div>
+                                <div class="card-text">Municipality: <strong>{{ obj.municipality }}</strong></div>
+                                <div class="card-text">Barangay: <strong>{{ obj.barangay }}</strong></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card-text">Distance: <strong>{{ obj.distance }}</strong></div>
+                                <div class="card-text">Feeder: <strong>{{ obj.feeder }}</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-text">Encoded by: <strong>{{ obj.base_profile.full_name }}</strong></div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 {% endblock %}
 

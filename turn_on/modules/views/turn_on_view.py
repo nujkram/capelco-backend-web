@@ -51,7 +51,7 @@ class TurnOnCreateView(LoginRequiredMixin, UserPassesTestMixin, View):
             turn_on.save()
 
             messages.success(request, 'Turn on created!', extra_tags='success')
-            return HttpResponseRedirect(reverse('turn_on_list'))
+            return HttpResponseRedirect(reverse('turn_on_list', kwargs=turn_on.pk))
         else:
             context = {
                 'page_title': 'Add Turn On',

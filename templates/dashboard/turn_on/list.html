@@ -27,17 +27,21 @@
             <a class="btn btn-primary" href="{% url 'turn_on_create' %}">CREATE</a>
         </div>
         <div class="card-body">
-            <table class="table table-hover">
+            <table class="table table-hover small">
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Membership</th>
+                        <th>Area</th>
                         <th>Created By</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for obj in turn_on %}
                         <tr>
-                            <td><a class="text-primary" href="{% url 'turn_on_detail' membership.pk %}">{{ obj.full_name }}</a></td>
+                            <td><a class="text-primary" href="{% url 'turn_on_detail' obj.pk %}">{{ obj.get_full_name }}</a></td>
+                            <td>{{ obj.membership }}</td>
+                            <td>{{ obj.area }}</td>
                             <td>{{ obj.created_by }}</td>
                         </tr>
                     {% endfor %}

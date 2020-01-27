@@ -8,6 +8,7 @@ from turn_on.constants import CONNECTION_TYPE_CHOICES, INSTALLATION_TYPE_CHOICES
 class Membership(models.Model):
     name = models.CharField(max_length=64, blank=False, null=False)
     slug = extension_fields.AutoSlugField(populate_from='name', blank=True, null=True)
+    active = models.BooleanField(default=True)
 
     created = models.DateTimeField(null=False, auto_now_add=True)
     updated = models.DateTimeField(null=False, auto_now=True)
@@ -39,8 +40,8 @@ class TurnOn(models.Model):
     feeder = models.CharField(max_length=12, blank=False, null=False)
     year = models.IntegerField(blank=False, null=False)
 
-    area = models.ForeignKey('locations.Province', related_name='province_area', null=True, on_delete=models.SET_NULL)
-    municipality = models.ForeignKey('locations.Province', related_name='province_turn_on', null=True,
+    area = models.ForeignKey('locations.City', related_name='area_turn_on', null=True, on_delete=models.SET_NULL)
+    municipality = models.ForeignKey('locations.City', related_name='municipality_turn_on', null=True,
                                      on_delete=models.SET_NULL)
     barangay = models.ForeignKey('locations.Barangay', related_name='barangay_turn_on', null=True,
                                  on_delete=models.SET_NULL)
@@ -67,3 +68,20 @@ class TurnOn(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+    def get_full_name(self):
+        if self.first_name != '' and self.last_name != '' and self.middle_name != '':
+            return '{}, {} {}.'.format(
+                self.last_name, self.first_name, self.middle_name[0]
+            )
+        elif self.first_name != '' and self.last_name != '':
+            return '{}, {}'.format(
+                self.last_name, self.first_name
+            )
+        else:
+            try:
+                if self.account.username is not None:
+                    return self.account.username
+            except AttributeError:
+                return 'Unnamed'
+            return 'Unnamed'
